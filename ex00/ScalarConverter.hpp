@@ -6,7 +6,7 @@
 /*   By: gd-auria <gianmarco.dauria@libero.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/19 14:35:53 by gd-auria          #+#    #+#             */
-/*   Updated: 2025/05/19 19:01:08 by gd-auria         ###   ########.fr       */
+/*   Updated: 2025/05/19 19:39:59 by gd-auria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 #include <iostream>
 #include <iomanip>
 #include <cmath>
+#include <limits>
 
 
 class ScalarConverter
