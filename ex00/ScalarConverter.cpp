@@ -6,7 +6,7 @@
 /*   By: gd-auria <gianmarco.dauria@libero.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/19 14:49:25 by gd-auria          #+#    #+#             */
-/*   Updated: 2025/05/19 20:01:55 by gd-auria         ###   ########.fr       */
+/*   Updated: 2025/05/19 21:36:18 by gd-auria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,19 +44,36 @@ void ScalarConverter::converter(const std::string& string)
     
     //FIRST IF FOR PSEUDO-LITERALS
 
-    if (string == "+inf" || string == "nan" || string == "-inf" ||
-        string == "nanf" || string == "+inff" || string == "-inff")
-        {
-            char *float_null_pointer = NULL;
+    if (string == "nan" || string == "nanf")
+    {
+        char *float_null_pointer = NULL;
 
-            float_num = std::strtof(string.c_str(), &float_null_pointer);
-            double_num = static_cast<double>(float_num);
-            std::cout << "CHAR: conversion is impossible" << std::endl;
-            std::cout << "INT: conversion is impossible" << std::endl;
-            std::cout << "FLOAT: " << std::fixed << std::setprecision(1) << float_num << "f" << std::endl;
-            std::cout << "DOUBLE: " << double_num << std::endl;
-            return;
-        }
+        float_num = std::strtof(string.c_str(), &float_null_pointer);
+        double_num = static_cast<double>(float_num);
+        std::cout << "CHAR: conversion is impossible" << std::endl;
+        std::cout << "INT: conversion is impossible" << std::endl;
+        std::cout << "FLOAT: " << std::fixed << std::setprecision(1) << float_num << "f" << std::endl;
+        std::cout << "DOUBLE: " << double_num << std::endl;
+        return;
+    }
+
+    if (string == "+inf" || string == "+inff")
+    {
+        std::cout << "CHAR: conversion is impossible" << std::endl;
+        std::cout << "INT: conversion is impossible" << std::endl;
+        std::cout << "FLOAT: +inff" << std::endl;
+        std::cout << "CHAR: +inf" << std::endl;
+        return;
+    }
+
+    if (string == "-inf" || string == "-inff")
+    {
+        std::cout << "CHAR: conversion is impossible" << std::endl;
+        std::cout << "INT: conversion is impossible" << std::endl;
+        std::cout << "FLOAT: -inff" << std::endl;
+        std::cout << "CHAR: -inf" << std::endl;
+        return;
+    }
         
     //SECOND IF FOR LITERAL CHAR BETWEEN DOUBLE APEX AND SINGLE APEX es: "'C'"
 
@@ -118,7 +135,9 @@ void ScalarConverter::converter(const std::string& string)
     //let's have a normal CHAR conversion control, shall we?
 
     if (value_for_standard_conversions < 0 || value_for_standard_conversions > 127 ||
-        std::isnan(value_for_standard_conversions))
+        std::isnan(value_for_standard_conversions) ||
+        value_for_standard_conversions != static_cast<int>(value_for_standard_conversions)) // se val è diverso da se stesso
+        //troncato a intero (strtod lo rende 3, qindi entra in displayable e non in impossible)
         std::cout << "CHAR: conversion is impossible; not an ASCII VALUE" << std::endl;
     else if(!std::isprint(static_cast<char>(value_for_standard_conversions)))
         std::cout << "CHAR: non displayable" << std::endl;
@@ -127,22 +146,42 @@ void ScalarConverter::converter(const std::string& string)
 
     
     // now for the INT
+    
     if (value_for_standard_conversions > std::numeric_limits<int>::max() ||
         value_for_standard_conversions < std::numeric_limits<int>::min() ||
         std::isnan(value_for_standard_conversions))
     {
         std::cout << "CIAO INT: conversion is impossible" << std::endl;
     }
-    //FLOAT and DOUBLE (is_it_float is here just for the compiler to stay silent)
     else
     {
         int integer_num = static_cast<int>(value_for_standard_conversions);
         std::cout << "INT: " << integer_num << std::endl;
     }
+    
+    //FLOAT and DOUBLE (is_it_float is here just for the compiler to stay silent)
+    
     (void)is_it_float;
     float_num = static_cast<float>(value_for_standard_conversions);
-    std::cout << "FLOAT: " << std::fixed << std::setprecision(1) << float_num << "f" << std::endl;
-    
+    if (std::isinf(float_num))
+    {
+        if (float_num < 0)
+            std::cout << "FLOAT: -inff\n" << std::endl;
+        else
+            std::cout << "FLOAT: +inff\n" << std::endl;
+    }
+    else
+        std::cout << "FLOAT: " << std::fixed << std::setprecision(1) << float_num << "f" << std::endl;
+
+        
     double_num = static_cast<double>(value_for_standard_conversions);
-    std::cout << "DOUBLE: " << std::fixed << std::setprecision(1) << double_num << std::endl;
+    if (std::isinf(value_for_standard_conversions))
+    {
+        if (value_for_standard_conversions < 0)
+            std::cout << "DOUBLE: -inf" << std::endl;
+        else
+            std::cout << "DOUBLE: +inf" << std::endl;
+    }
+    else
+        std::cout << "DOUBLE: " << std::fixed << std::setprecision(1) << double_num << std::endl;
 }
