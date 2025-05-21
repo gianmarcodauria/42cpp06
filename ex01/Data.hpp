@@ -1,26 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.cpp                                           :+:      :+:    :+:   */
+/*   Data.hpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gd-auria <gianmarco.dauria@libero.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/19 16:52:52 by gd-auria          #+#    #+#             */
-/*   Updated: 2025/05/21 16:18:08 by gd-auria         ###   ########.fr       */
+/*   Created: 2025/05/21 15:30:24 by gd-auria          #+#    #+#             */
+/*   Updated: 2025/05/21 16:05:35 by gd-auria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ScalarConverter.hpp"
+#ifndef DATA_HPP
+#define DATA_HPP
 
-int main(int argc, char **argv)
+#include <string>
+
+struct Data
 {
-    if (argc != 2)
-        return 1;
-    ScalarConverter::converter(argv[1]);
-    return 0;
-}
+    int num;
+    std::string text_one;
+    std::string text_two;
+};
 
-
-//PERCHÈ UTILIZZIAMO STATIC_CAST?
-//static_cast è perfetto per le convesioni logiche di dati, come per esempio
-//la trasformazione da int a float, o da una classe derivata a base e viceversa
+#endif

@@ -6,7 +6,7 @@
 /*   By: gd-auria <gianmarco.dauria@libero.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/19 14:49:25 by gd-auria          #+#    #+#             */
-/*   Updated: 2025/05/19 21:36:18 by gd-auria         ###   ########.fr       */
+/*   Updated: 2025/05/21 15:36:25 by gd-auria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,15 +22,13 @@ ScalarConverter::~ScalarConverter()
     
 }
 
-ScalarConverter::ScalarConverter(const ScalarConverter& copy)
+ScalarConverter::ScalarConverter(const ScalarConverter&)
 {
-    (void)copy;
+    
 }
 
-ScalarConverter& ScalarConverter::operator=(const ScalarConverter& copy)
+ScalarConverter& ScalarConverter::operator=(const ScalarConverter&)
 {
-    if (this != &copy)
-        *this = copy;
     return *this;
 }
 
