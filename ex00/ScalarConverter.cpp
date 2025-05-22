@@ -6,31 +6,31 @@
 /*   By: gd-auria <gianmarco.dauria@libero.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/19 14:49:25 by gd-auria          #+#    #+#             */
-/*   Updated: 2025/05/21 15:36:25 by gd-auria         ###   ########.fr       */
+/*   Updated: 2025/05/22 17:29:06 by gd-auria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ScalarConverter.hpp"
 
-ScalarConverter::ScalarConverter()
-{
+// ScalarConverter::ScalarConverter()
+// {
     
-}
+// }
 
-ScalarConverter::~ScalarConverter()
-{
+// ScalarConverter::~ScalarConverter()
+// {
     
-}
+// }
 
-ScalarConverter::ScalarConverter(const ScalarConverter&)
-{
+// ScalarConverter::ScalarConverter(const ScalarConverter&)
+// {
     
-}
+// }
 
-ScalarConverter& ScalarConverter::operator=(const ScalarConverter&)
-{
-    return *this;
-}
+// ScalarConverter& ScalarConverter::operator=(const ScalarConverter&)
+// {
+//     return *this;
+// }
 
 void ScalarConverter::converter(const std::string& string)
 {
